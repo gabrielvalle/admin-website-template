@@ -1,0 +1,32 @@
+{
+  "name": "admin-demo",
+  "version": "1.0.0",
+  "authors": [
+    "Jeng <jeng.tam@udfex.com>"
+  ],
+  "description": "admin demo",
+  "main": "app.js app.css index.html",
+  "keywords": [
+    "admin",
+    "demo"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.18",
+    "underscore": "~1.8.3",
+    "ui-router": "~0.2.15",
+    "jquery": "~2.1.4",
+    "modernizr": "~2.8.3",
+    "bootstrap": "2.3.1",
+    "fontawesome": "3.2.0",
+    "checklist-model": "~0.2.4"
+  }
+}

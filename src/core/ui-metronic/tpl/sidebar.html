@@ -1,0 +1,53 @@
+<div class="page-sidebar nav-collapse collapse">
+
+
+    <ul class="page-sidebar-menu">
+
+        <li>
+
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+            <div class="sidebar-toggler hidden-phone"></div>
+
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+        </li>
+
+        <li>
+
+            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+
+            <form class="sidebar-search">
+
+                <div class="input-box">
+
+                    <a href="javascript:;" class="remove"></a>
+
+                    <input type="text" placeholder="Search..." />
+
+                    <input type="button" class="submit" value=" " />
+
+                </div>
+
+            </form>
+
+            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+
+        </li>
+
+        <li ng-repeat="nav in navList" ui-sref-active="start active" ui-sref-active-eq="state1">
+            <a ng-href="#{{nav.url}}" href="javascript:;">
+                <i class="{{nav.icon}}"></i>
+                <span class="title" ng-bind="nav.title"></span>
+                <span ui-sref-active="selected"></span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu" ng-if="nav.subMenu">
+                <li ng-repeat="subNav in nav.subMenu">
+                    <a ng-href="#{{subNav.url}}" ng-bind="subNav.title"></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>

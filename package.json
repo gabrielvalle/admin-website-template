@@ -1,0 +1,15 @@
+{
+  "name": "admin-demo",
+  "version": "1.0.0",
+  "description": "The start admin project demo",
+  "main": "app.js index.html app.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "admin",
+    "demo"
+  ],
+  "author": "jeng.tam@gamil.com",
+  "license": "ISC"
+}
