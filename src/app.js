@@ -5,41 +5,44 @@ define([
     "uiRouter",
     "uiMetronic"
 ],function (uiRouter,uiMetronic) {
-    //uiMetronic.init(); // initlayout and core plugins
-    angular.module("ngApp",["ui.router","ui.metronci"]).config(["$stateProvider","$urlRouterProvider",function($stateProvider, $urlRouterProvider) {
+    angular.module("ngApp",["ui.router","ui.metronci"])
+        .config(["$stateProvider","$urlRouterProvider",function($stateProvider, $urlRouterProvider) {
 
         // Now set up the states
         $stateProvider
             .state('home', {
                 url: "/home.html",
-                templateUrl: "modules/home.html"
+                templateUrl: "modules/common/home.html"
             })
-            .state('buttons', {
-                url: "/ui_features/buttons",
-                templateUrl: "modules/ui_features/ui_buttons.html"
+            .state('module1', {
+                abstract: true,
+                url: '/module1',
+                template: '<div ui-view></div>'
             })
-            .state('general', {
-                url: "/ui_features/ui_general",
-                templateUrl: "modules/ui_features/ui_buttons.html"
+            .state('module1.table', {
+                url: "/table",
+                templateUrl: "modules/table/table_responsive.html"
             })
-            .state('sliders', {
-                url: "/ui_features/buttons",
-                templateUrl: "modules/ui_features/ui_buttons.html"
+            .state('module2', {
+                abstract: true,
+                url: '/module2',
+                template: '<div ui-view></div>'
             })
-            .state('tabs_accordions', {
-                url: "/ui_features/buttons",
-                templateUrl: "modules/ui_features/ui_buttons.html"
-            })
-            .state('portlet_general', {
-                url: "/portlets/portlet_general",
-                templateUrl: "modules/portlets/portlet_general.html"
-            })
-            .state('form_fileupload', {
-                url: "/form/form_fileupload",
-                templateUrl: "modules/form/form_fileupload.html"
+            .state('module2.form', {
+                url: "/form_validation",
+                templateUrl: "modules/form/form_validation.html"
             });
         $urlRouterProvider.otherwise("/home.html");
-    }]);
+    }]).run(['$rootScope', '$state', '$stateParams',
+        function ($rootScope,   $state,   $stateParams) {
+            // It's very handy to add references to $state and $stateParams to the $rootScope
+            // so that you can access them from any scope within your applications.For example,
+            // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
+            // to active whenever 'contacts.list' or one of its decendents is active.
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
+        }
+    ]);
     angular.bootstrap(document, ["ngApp"]);
     return {};
 });

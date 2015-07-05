@@ -1,14 +1,13 @@
 {
-  "name": "admin-demo",
+  "name": "wms-website",
   "version": "1.0.0",
   "authors": [
     "Jeng <jeng.tam@udfex.com>"
   ],
-  "description": "admin demo",
+  "description": "The Udfex company Warehouse Management System",
   "main": "app.js app.css index.html",
   "keywords": [
-    "admin",
-    "demo"
+    "wms"
   ],
   "license": "MIT",
   "homepage": "index.html",

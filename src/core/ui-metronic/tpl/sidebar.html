@@ -1,6 +1,5 @@
 <div class="page-sidebar nav-collapse collapse">
 
-
     <ul class="page-sidebar-menu">
 
         <li>
@@ -23,9 +22,9 @@
 
                     <a href="javascript:;" class="remove"></a>
 
-                    <input type="text" placeholder="Search..." />
+                    <input type="text" placeholder="Search..."/>
 
-                    <input type="button" class="submit" value=" " />
+                    <input type="button" class="submit" value=" "/>
 
                 </div>
 
@@ -35,18 +34,66 @@
 
         </li>
 
-        <li ng-repeat="nav in navList" ui-sref-active="start active" ui-sref-active-eq="state1">
-            <a ng-href="#{{nav.url}}" href="javascript:;">
-                <i class="{{nav.icon}}"></i>
-                <span class="title" ng-bind="nav.title"></span>
-                <span ui-sref-active="selected"></span>
-                <span class="arrow "></span>
+        <li class="start" ng-class="{ active: $state.includes('home') }" ui-sref-active="home">
+
+            <a ui-sref="home">
+
+                <i class="icon-home"></i>
+
+                <span class="title">仪表盘</span>
+
+                <span class="selected"></span>
+
             </a>
-            <ul class="sub-menu" ng-if="nav.subMenu">
-                <li ng-repeat="subNav in nav.subMenu">
-                    <a ng-href="#{{subNav.url}}" ng-bind="subNav.title"></a>
+
+        </li>
+
+        <li ng-class="{ active: $state.includes('module1') }">
+
+            <a href="javascript:;">
+
+                <i class="icon-bookmark-empty"></i>
+
+                <span class="title">模块1</span>
+
+                <span class="arrow "></span>
+
+            </a>
+
+            <ul class="sub-menu">
+
+                <li ng-class="{ active: $state.includes('module1.table') }">
+
+                    <a ui-sref="module1.table">列表</a>
+
                 </li>
+
             </ul>
+
+        </li>
+
+        <li ng-class="{ active: $state.includes('module2') }">
+
+            <a href="javascript:;">
+
+                <i class="icon-bookmark-empty"></i>
+
+                <span class="title">模块2</span>
+
+                <span class="arrow "></span>
+
+            </a>
+
+            <ul class="sub-menu">
+
+                <li ng-class="{ active: $state.includes('module2.form') }">
+
+                    <a ui-sref="module2.form">表单</a>
+
+                </li>
+
+            </ul>
+
         </li>
     </ul>
 
