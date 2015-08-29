@@ -23,7 +23,10 @@ require.config({
             deps:["jQuery"]
         },
         uiRouter: ["angular"],
-        metronic: ["jQuery"],
+        metronic: {
+            deps:["jQuery"],
+            export:"App"
+        },
         uiMetronic:{
             deps:["angular","bootstrap","metronic"]
         },

@@ -34,7 +34,7 @@ define(function () {
         isIE8 = !! navigator.userAgent.match(/MSIE 8.0/);
         isIE9 = !! navigator.userAgent.match(/MSIE 9.0/);
         isIE10 = !! navigator.userAgent.match(/MSIE 10/);
-        
+
         if (isIE10) {
             jQuery('html').addClass('ie10'); // detect IE10 version
         }
@@ -106,30 +106,30 @@ define(function () {
             $(window).resize(function() {
                 if(currheight == document.documentElement.clientHeight) {
                     return; //quite event since only body resized not window.
-                }                
+                }
                 if (resize) {
                     clearTimeout(resize);
-                }   
+                }
                 resize = setTimeout(function() {
-                    handleResponsive();    
-                }, 50); // wait 50ms until window resize finishes.                
+                    handleResponsive();
+                }, 50); // wait 50ms until window resize finishes.
                 currheight = document.documentElement.clientHeight; // store last body client height
             });
         } else {
             $(window).resize(function() {
                 if (resize) {
                     clearTimeout(resize);
-                }   
+                }
                 resize = setTimeout(function() {
                     handleResponsive();
                 }, 50); // wait 50ms until window resize finishes.
             });
-        }   
+        }
     }
 
     //* BEGIN:CORE HANDLERS *//
     // this function handles responsive layout on screen size resize or mobile device rotate.
-  
+
     var handleSidebarAndContentHeight = function () {
         var content = $('.page-content');
         var sidebar = $('.page-sidebar');
@@ -149,8 +149,8 @@ define(function () {
             }
             if (height >= content.height()) {
                 content.attr('style', 'min-height:' + height + 'px !important');
-            } 
-        }          
+            }
+        }
     }
 
     var handleSidebarMenu = function () {
@@ -386,7 +386,7 @@ define(function () {
     var handleGoTop = function () {
         /* set variables locally for increased performance */
         jQuery('.footer').on('click', '.go-top', function (e) {
-                App.scrollTo();
+                scrollTo();
                 e.preventDefault();
             });
     }
@@ -405,9 +405,9 @@ define(function () {
         jQuery('body').on('click', '.portlet .tools a.reload', function (e) {
             e.preventDefault();
                 var el = jQuery(this).parents(".portlet");
-                App.blockUI(el);
+                blockUI(el);
                 window.setTimeout(function () {
-                        App.unblockUI(el);
+                        unblockUI(el);
                     }, 1000);
         });
 
@@ -732,6 +732,25 @@ define(function () {
         }
     }
 
+    var blockUI = function (el, centerY) {
+        var el = jQuery(el);
+        el.block({
+            message: '<img src="./assets/img/ajax-loading.gif" align="">',
+            centerY: centerY != undefined ? centerY : true,
+            css: {
+                top: '10%',
+                border: 'none',
+                padding: '2px',
+                backgroundColor: 'none'
+            },
+            overlayCSS: {
+                backgroundColor: '#000',
+                opacity: 0.05,
+                cursor: 'wait'
+            }
+        });
+    }
+
     //* END:CORE HANDLERS *//
 
     return {
@@ -797,24 +816,7 @@ define(function () {
         },
 
         // wrapper function to  block element(indicate loading)
-        blockUI: function (el, centerY) {
-            var el = jQuery(el);
-            el.block({
-                    message: '<img src="./assets/img/ajax-loading.gif" align="">',
-                    centerY: centerY != undefined ? centerY : true,
-                    css: {
-                        top: '10%',
-                        border: 'none',
-                        padding: '2px',
-                        backgroundColor: 'none'
-                    },
-                    overlayCSS: {
-                        backgroundColor: '#000',
-                        opacity: 0.05,
-                        cursor: 'wait'
-                    }
-                });
-        },
+        blockUI: blockUI,
 
         // wrapper function to  un-block element(finish loading)
         unblockUI: function (el) {

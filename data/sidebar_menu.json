@@ -3,7 +3,7 @@
   "data": [
     {
       "icon": "icon-home",
-      "title": "Dashboard",
+      "title": "仪表盘",
       "url": "/index.html",
       "isLink": true
     },

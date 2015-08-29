@@ -114,7 +114,7 @@ ul.page-sidebar-menu > li.active > a .arrow.open:before {
   border-bottom: 1px solid #7d7d7d !important;
 }
 .page-sidebar .sidebar-search .submit {
-  background-image: url(../img/search-icon.png);
+  background-image: url(../images/search-icon.png);
 }
 /***
 Sidebar toggler

@@ -54,20 +54,22 @@
 
                 <i class="icon-bookmark-empty"></i>
 
-                <span class="title">模块1</span>
+                <span class="title">表格</span>
 
                 <span class="arrow "></span>
 
             </a>
 
             <ul class="sub-menu">
-
                 <li ng-class="{ active: $state.includes('module1.table') }">
-
-                    <a ui-sref="module1.table">列表</a>
-
+                    <a ui-sref="module1.table">普通表格</a>
                 </li>
-
+                <li ng-class="{ active: $state.includes('module1.table2') }">
+                    <a ui-sref="module1.table2">数据表格</a>
+                </li>
+                <li ng-class="{ active: $state.includes('module1.table2') }">
+                    <a ui-sref="module1.table3">jqGrid</a>
+                </li>
             </ul>
 
         </li>
@@ -78,7 +80,7 @@
 
                 <i class="icon-bookmark-empty"></i>
 
-                <span class="title">模块2</span>
+                <span class="title">表单</span>
 
                 <span class="arrow "></span>
 
