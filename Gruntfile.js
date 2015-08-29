@@ -8,7 +8,28 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-replace');
 
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json')
+    });
+
     var taskConfig = grunt.file.readJSON('task-config.json');
+    grunt.registerTask("rev-build", "build dist rev", function(){
+        grunt.config.set("rev",{
+            options: {
+                encoding: 'utf8',
+                algorithm: 'md5',
+                length: 8
+            },
+            files: {
+                src: [
+                    'dist/**/*.css',
+                    'dist/**/*.js',
+                    'dist/**/*.{jpg,jpeg,gif,png}'
+                ]
+            }
+        });
+        grunt.task.run(['rev']);
+    });
 
     /**
      * environments configuration replace task
@@ -18,49 +39,13 @@ module.exports = function (grunt) {
             development: {
                 options: {
                     patterns: [{
-                        json: grunt.file.readJSON('./config/environments/develop.json')
+                        json: grunt.file.readJSON('./env/environments/develop.json')
                     }]
                 },
                 files: [{
                     expand: true,
                     flatten: true,
-                    src: ['./config/env_config.js'],
-                    dest: './src/js/'
-                }]
-            }
-        });
-        grunt.task.run(['replace']);
-    });
-    grunt.registerTask("env-rls-replace","replace environments configuration",function(){
-        grunt.config.set("replace",{
-            development: {
-                options: {
-                    patterns: [{
-                        json: grunt.file.readJSON('./config/environments/release.json')
-                    }]
-                },
-                files: [{
-                    expand: true,
-                    flatten: true,
-                    src: ['./config/env_config.js'],
-                    dest: './src/js/'
-                }]
-            }
-        });
-        grunt.task.run(['replace']);
-    });
-    grunt.registerTask("env-prd-replace","replace environments configuration",function(){
-        grunt.config.set("replace",{
-            development: {
-                options: {
-                    patterns: [{
-                        json: grunt.file.readJSON('./config/environments/product.json')
-                    }]
-                },
-                files: [{
-                    expand: true,
-                    flatten: true,
-                    src: ['./config/env_config.js'],
+                    src: ['./env/env_config.js'],
                     dest: './src/js/'
                 }]
             }
@@ -85,22 +70,6 @@ module.exports = function (grunt) {
         grunt.task.run(['requirejs']);
         grunt.task.run(['zip-dist']);
     });
-
-    grunt.registerTask('build-rls', 'requirejs web project', function () {
-        grunt.config.set('requirejs', taskConfig.requirejs );
-        grunt.task.run(['clean-zip']);
-        grunt.task.run(['env-rls-replace']);
-        grunt.task.run(['requirejs']);
-        grunt.task.run(['zip-dist']);
-    });
-
-    grunt.registerTask('build-prd', 'requirejs web project', function () {
-        grunt.config.set('requirejs', taskConfig.requirejs );
-        grunt.task.run(['clean-zip']);
-        grunt.task.run(['env-prd-replace']);
-        grunt.task.run(['requirejs']);
-        grunt.task.run(['zip-dist']);
-    });
     /**
      * clean dist-ecw directory task
      */
@@ -109,21 +78,5 @@ module.exports = function (grunt) {
         grunt.task.run(['clean']);
     });
 
-    /**
-     * check js syntax
-     */
-    grunt.registerTask('jshint-js', 'usr jshint plugin check js style', function () {
-        grunt.config.set('jshint', {
-            options: {
-                curly: true,
-                eqnull: true,
-                globals: {
-                    jQuery: true
-                }
-            },
-            files: ['Gruntfile.js', 'src/js/business/**/*.js']
-        });
-        grunt.task.run(['jshint']);
-    });
-    grunt.registerTask('default', ['build']);
+    grunt.registerTask('default', ['build-dev']);
 };

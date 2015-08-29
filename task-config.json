@@ -1,0 +1,32 @@
+{  
+    "requirejs":
+        {"requirejs": {
+            "options": {
+                "appDir":"src/",
+                "optimizeCss": "standard",
+                "mainConfigFile":"src/config.js",
+                "dir": "dist",
+                "removeCombined": "true",
+                "modules": [
+                    {
+                        "name": "app",
+                        "include": ["uiRouter",
+                            "uiMetronic",
+                            "uxWms"]
+                    }
+                ]
+            }
+        }
+    },
+    "clean": {
+        "build": {
+            "src": [ "dist", "dist.zip"]
+        }
+    },
+    "zip": {
+        "long-format": {
+            "src": ["dist/**"],
+            "dest": "dist.zip"
+        }
+    }
+}
