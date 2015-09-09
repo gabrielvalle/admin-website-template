@@ -5,16 +5,43 @@ define([
     "./table_responsive"
 ],function (table_responsive) {
     angular
-        .module("wms.table",["ui.router"])
-        .config(["$stateProvider","$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
-            $stateProvider.state('module1', {
+        .module("wms.table",[
+            "ui.router",
+            "ui.metronci"
+        ])
+        .constant({
+            ModuleMenu:{
+                module:"module1",
+                title:"表格",
+                icon:"icon-th",
+                url:"/module1",
+                subMenu:[
+                    {
+                        title:"普通表格",
+                        url:"/table",
+                        state:"module1.table",
+                        templateUrl:"modules/table/table_responsive.html",
+                        controller:"TableController"
+                    }
+                ]
+            }
+        })
+        .controller({
+            TableController:table_responsive
+        })
+        .config(["$stateProvider","$urlRouterProvider","$MenuList","ModuleMenu", function($stateProvider, $urlRouterProvider, $MenuList, ModuleMenu) {
+            $MenuList.push(ModuleMenu);
+            $stateProvider.state(ModuleMenu.module, {
                 abstract: true,
-                url: '/module1',
+                url: ModuleMenu.url,
                 template: '<div ui-view></div>'
-            }).state('module1.table', {
-                url: "/table",
-                templateUrl: "modules/table/table_responsive.html",
-                controller:table_responsive
             });
+            angular.forEach(ModuleMenu.subMenu,function(value, index){
+                $stateProvider.state(value.state, {
+                    url: value.url,
+                    templateUrl: value.templateUrl,
+                    controller: value.controller
+                })
+            })
         }]);
 });

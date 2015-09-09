@@ -6,6 +6,9 @@ define([
 ],function (metronic) {
 
     return angular.module("ui.metronci",[])
+        .constant({
+            $MenuList:[]
+        })
         .factory("$metronci", function(){
             return metronic;
         })

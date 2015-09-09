@@ -4,8 +4,15 @@
 define([
     "./form_validation"
 ],function (form_validation) {
-    angular.module("wms.form",[])
-        .config(["$stateProvider","$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
+    angular
+        .module("wms.form",[
+            "ui.metronci"
+        ])
+        .config(["$stateProvider","$urlRouterProvider","$MenuList", function($stateProvider, $urlRouterProvider,$MenuList) {
+            $MenuList.push({
+                title:"表单",
+                link:"/form_validation"
+            });
             $stateProvider.state('module2', {
                 abstract: true,
                 url: '/module2',
