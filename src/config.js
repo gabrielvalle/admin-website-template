@@ -3,6 +3,7 @@
  */
 require.config({
     paths: {
+        main:"app",
         underscore:"components/underscore/underscore",
         angular:"components/angular/angular",
         jQuery:"components/jquery/dist/jquery",
