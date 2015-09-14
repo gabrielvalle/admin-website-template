@@ -34,6 +34,7 @@ require.config({
         uxWms:{
             deps:["uiMetronic"]
         }
-    }
+    },
+    deps: ['./app']
     // , urlArgs: "v="+(new Date()).getTime()
 });

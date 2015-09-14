@@ -4,7 +4,7 @@
 define([
     "./home"
 ],function (home) {
-    angular.module("wms.core",[])
+    return angular.module("wms.core",[])
         .config(["$stateProvider","$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
             $stateProvider.state('home', {
                 url: "/home.html",

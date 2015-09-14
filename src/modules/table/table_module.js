@@ -4,7 +4,7 @@
 define([
     "./table_responsive"
 ],function (table_responsive) {
-    angular
+    return angular
         .module("wms.table",[
             "ui.router",
             "ui.metronci"

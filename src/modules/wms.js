@@ -6,7 +6,7 @@ define([
     "./modules/form/form_module",
     "./modules/table/table_module"
 ],function (coreMoudle, formModule, tableModule) {
-    angular.module("uxw.wms", [
+    return angular.module("uxw.wms", [
         "wms.core",
         "wms.form",
         "wms.table"
@@ -18,10 +18,8 @@ define([
             // so that you can access them from any scope within your applications.For example,
             // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
             // to active whenever 'contacts.list' or one of its decendents is active.
-            console.log($MenuList)
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
         }
     ]);
-    return {};
 });

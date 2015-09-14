@@ -6,10 +6,9 @@ define([
     "uiMetronic",
     "uxWms"
 ],function (uiRouter,uiMetronic,uxWms) {
-    angular.module("ngApp",[
+    return angular.module("ngApp",[
         "ui.router",
         "ui.metronci",
         "uxw.wms"
     ]);
-    angular.bootstrap(document, ["ngApp"]);
 });

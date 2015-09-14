@@ -29,21 +29,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        replace:{
-            development: {
-                options: {
-                    patterns: [{
-                        json: grunt.file.readJSON('./env/environments/develop.json')
-                    }]
-                },
-                files: [{
-                    expand: true,
-                    flatten: true,
-                    src: ['./env/env_config.js'],
-                    dest: './src/js/'
-                }]
-            }
-        },
         zip:{
             "long-format": {
                 "src": ["dist/**"],
@@ -78,7 +63,6 @@ module.exports = function (grunt) {
      */
     grunt.registerTask('build', 'requirejs web project', function () {
         grunt.task.run(['clean']);
-        grunt.task.run(['replace']);
         grunt.task.run(['requirejs']);
         grunt.task.run(['zip']);
     });

@@ -4,7 +4,7 @@
 define([
     "./form_validation"
 ],function (form_validation) {
-    angular
+    return angular
         .module("wms.form",[
             "ui.metronci"
         ])
