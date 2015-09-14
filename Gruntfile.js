@@ -40,6 +40,9 @@ module.exports = function (grunt) {
                 "options": {
                     "appDir": "src/",
                     "optimizeCss": "standard",
+                    "optimize": "uglify2",
+                    "generateSourceMaps": true,
+                    "preserveLicenseComments": false,
                     "mainConfigFile": "src/config.js",
                     "dir": "dist",
                     "removeCombined": "true",
